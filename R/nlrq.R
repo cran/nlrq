@@ -277,10 +277,10 @@
 
 # For the moment, print.summary is the same as print
 # However, some extra diagnostic should be done here
-"summary.nlrq" <- function (object)
+"summary.nlrq" <- function (object, ...)
     structure(object, class=c("summary.nlrq", class(object)))
 
-"print.summary.nlrq" <- function (x)
+"print.summary.nlrq" <- function (x, ...)
 {
     cat("Nonlinear quantile regression\n")
     cat("   model: ", deparse(formula(x)), "\n")
@@ -291,8 +291,8 @@
     invisible(x)
 }
 
-"coef.nlrq" <- function (x, ...) 
-    x$m$getAllPars()
+"coef.nlrq" <- function (object, ...) 
+    object$m$getAllPars()
 
 "deviance.nlrq" <- function (object, ...) 
     object$m$deviance()
@@ -312,8 +312,8 @@
     val
 }
 
-"formula.nlrq" <- function (object) 
-    object$m$formula()
+"formula.nlrq" <- function (x, ...) 
+    x$m$formula()
 
 "predict.nlrq" <- function (object, newdata, ...) 
 {
