@@ -34,7 +34,10 @@ nlrq(formula, data=parent.frame(), start, tau=0.5,
           are printed at the end of each iteration. } 
   \item{method}{ method passed to optim for line search, default is "L-BFGS-B"
 		but for some problems "BFGS" may be preferable.  See \code{\link{optim}} for
-		further details.}
+		further details.  Note that the algorithm wants to pass
+upper and lower bounds for the line search to optim, which is fine for
+the L-BFGS-B method.  Use of other methods will produce warnings about
+these arguments -- so users should proceed at their own risk.}
 }
 \details{An `nlrq' object is a type of fitted model object.  It has methods
      for the generic functions `coef' (parameters estimation at best solution),

@@ -195,7 +195,7 @@
         length(eval(as.name(varName), data))%%respLength == 0
     }, data, length(eval(formula[[2]], data)))
     mf$formula <- parse(text = paste("~", paste(varNames[varIndex], collapse = "+")))[[1]]
-    mf$start <- mf$tau <- mf$control <- mf$algorithm <- mf$trace <- NULL
+    mf$start <- mf$tau <- mf$control <- mf$algorithm <- mf$trace <- mf$method <- NULL
     mf[[1]] <- as.name("model.frame")
     mf <- as.list(eval(mf, parent.frame()))
     if (missing(start)) {
@@ -222,7 +222,7 @@
                 w <- w + (ctrl$beta/alpha) * s
             }
             coef <- z$coef
-            return(coef, w)
+            return(list(coef=coef, w=w))
         }
         model.step <- function(lambda, Step, model, pars) {
             model$setPars(pars + lambda * Step)
