@@ -167,7 +167,8 @@
     m
 }
 
-"nlrq" <- function (formula, data=parent.frame(), start, tau=0.5, control, trace=FALSE)
+"nlrq" <- function (formula, data=parent.frame(), start, tau=0.5, 
+	control, trace=FALSE, method = "L-BFGS-B")
 {
     mf <- match.call()
     formula <- as.formula(formula)
@@ -241,7 +242,8 @@
             z <- meketon(model$gradient(), as.vector(model$resid()), w, tau=tau, ctrl=ctrl)
             Step <- z$coef
             Pars <- model$getPars()
-            l <- optim(par=1, fn=model.step, method="L-BFGS-B", lower=0, upper=1, Step=Step, model=model, pars=Pars, control=optim.ctrl)$par
+            l <- optim(par=1, fn=model.step, method=method, 
+		lower=0, upper=1, Step=Step, model=model, pars=Pars, control=optim.ctrl)$par
             if (trace == TRUE) {cat("lambda =", l, "\n")}
             model$setPars(Pars + l * Step)
             sold <- snew

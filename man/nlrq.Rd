@@ -18,7 +18,8 @@ are nonlinear in the parameters.  The algorithm is based on interior
 point ideas described in Koenker and Park (1994).
 }
 \usage{
-nlrq(formula, data=parent.frame(), start, tau=0.5, control, trace=FALSE)
+nlrq(formula, data=parent.frame(), start, tau=0.5, 
+	control, trace=FALSE,method="L-BFGS-B")
 }
 \arguments{
   \item{formula}{ formula for model in nls format; accept self-starting models }
@@ -31,6 +32,9 @@ nlrq(formula, data=parent.frame(), start, tau=0.5, control, trace=FALSE)
   \item{trace}{ logical value indicating if a trace of the iteration progress
           should be printed.  Default is `FALSE'.  If `TRUE' intermediary results
           are printed at the end of each iteration. } 
+  \item{method}{ method passed to optim for line search, default is "L-BFGS-B"
+		but for some problems "BFGS" may be preferable.  See \code{\link{optim}} for
+		further details.}
 }
 \details{An `nlrq' object is a type of fitted model object.  It has methods
      for the generic functions `coef' (parameters estimation at best solution),
@@ -51,8 +55,8 @@ nlrq(formula, data=parent.frame(), start, tau=0.5, control, trace=FALSE)
           `m' component. }
 }
 
-\author{Based on S code by Roger Koenker modified for R and to accept same models
-as nls by Philippe Grosjean.}
+\author{Based on S code by Roger Koenker modified for R and to accept models
+as specified by nls by Philippe Grosjean.}
 
 \references{ Koenker, R. and Park, B.J. (1994). An Interior Point Algorithm for
 Nonlinear Quantile Regression, Journal of Econometrics, 71(1-2): 265-283.
