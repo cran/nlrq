@@ -72,17 +72,17 @@ plot(Dat)
 Dat.nls <- nls(y ~ SSlogis(x, Asym, mid, scal), data=Dat); Dat.nls
 lines(1:25, predict(Dat.nls, newdata=list(x=1:25)), col=1)
 # then fit the median using nlrq
-Dat.nlrq <- nlrq(y ~ SSlogis(x, Asym, mid, scal), data=Dat, tau=0.5, trace=T)
+Dat.nlrq <- nlrq(y ~ SSlogis(x, Asym, mid, scal), data=Dat, tau=0.5, trace=TRUE)
 lines(1:25, predict(Dat.nlrq, newdata=list(x=1:25)), col=2)
 # the 1st and 3rd quartiles regressions
-Dat.nlrq <- nlrq(y ~ SSlogis(x, Asym, mid, scal), data=Dat, tau=0.25, trace=T)
+Dat.nlrq <- nlrq(y ~ SSlogis(x, Asym, mid, scal), data=Dat, tau=0.25, trace=TRUE)
 lines(1:25, predict(Dat.nlrq, newdata=list(x=1:25)), col=3)
-Dat.nlrq <- nlrq(y ~ SSlogis(x, Asym, mid, scal), data=Dat, tau=0.75, trace=T)
+Dat.nlrq <- nlrq(y ~ SSlogis(x, Asym, mid, scal), data=Dat, tau=0.75, trace=TRUE)
 lines(1:25, predict(Dat.nlrq, newdata=list(x=1:25)), col=3)
 # and finally "external envelopes" holding 95% of the data
-Dat.nlrq <- nlrq(y ~ SSlogis(x, Asym, mid, scal), data=Dat, tau=0.025, trace=T)
+Dat.nlrq <- nlrq(y ~ SSlogis(x, Asym, mid, scal), data=Dat, tau=0.025, trace=TRUE)
 lines(1:25, predict(Dat.nlrq, newdata=list(x=1:25)), col=4)
-Dat.nlrq <- nlrq(y ~ SSlogis(x, Asym, mid, scal), data=Dat, tau=0.975, trace=T)
+Dat.nlrq <- nlrq(y ~ SSlogis(x, Asym, mid, scal), data=Dat, tau=0.975, trace=TRUE)
 lines(1:25, predict(Dat.nlrq, newdata=list(x=1:25)), col=4)
 leg <- c("least squares","median (0.5)","quartiles (0.25/0.75)",".95 band (0.025/0.975)")
 legend(1, 12.5, legend=leg, lty=1, col=1:4)

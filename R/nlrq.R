@@ -213,7 +213,7 @@
             k <- 1
             while(k <= ctrl$k & yw - crossprod(y, w) > ctrl$eps) {
                 d <- pmin(tau - w, 1 - tau + w)
-                z <- lsfit(x, y, d^2, int=F)
+                z <- lsfit(x, y, d^2, int=FALSE)
                 yw <- sum(tau * pmax(z$resid, 0) + (tau - 1) * pmin(z$resid, 0))
                 k <- k + 1
                 s <- z$resid * d^2
